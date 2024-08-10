@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Películas y Series - PopcornHour</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 text-white">
+
+    <!-- Main Content -->
+    <!-- Moderator Section -->
+    <div class="bg-gray-800 p-6 rounded-lg mb-4 flex">
+        
+        <!-- Card -->
+        <div id="template-card" class="max-w-sm bg-red-800 rounded-lg h-svh">
+            <a href="#">
+                <img id="card-image" src="https://placeholder.pics/svg/220x300/DEDEDE/555555/Poster" alt=""
+                    class="w-full h-full object-fill rounded-md mb-4 rounded-t-lg"
+                    style="height: 300px; min-width: 220px;" />
+            </a>
+
+            <div class="p-5">
+                <div class="min-h-14 px-2">
+                    <h3 id="card-title" class="text-stone font-bold mb-2">Titulo de Contenido</h3>
+                </div>
+                <div class="min-h-14 px-2">
+                    <p id="card-original-title" class="text-stone-200 mb-4">Título original:</p>
+                </div>
+                <div class="px-2">
+                    <p id="card-year" class="text-stone-200 mb-4">Año:</p>
+                </div>
+                <div class="px-2">
+                    <div class="stars-outer flex items-center text-yellow-400 text-base font-serif font-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor" role="presentation">
+                            <path
+                                d="M12 17.27l4.15 2.51c.76.46 1.69-.22 1.49-1.08l-1.1-4.72 3.67-3.18c.67-.58.31-1.68-.57-1.75l-4.83-.41-1.89-4.46c-.34-.81-1.5-.81-1.84 0L9.19 8.63l-4.83.41c-.88.07-1.24 1.17-.57 1.75l3.67 3.18-1.1 4.72c-.2.86.73 1.54 1.49 1.08l4.15-2.5z">
+                            </path>
+                        </svg>
+                        <div class="flex inline-flex">
+                            <p id="calificacion">0</p>
+                            <p>/ 100</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-2 py-2">
+                    <a href="#" class="text-gray-100 hover:text-gray-300">Leer más</a>
+            </div>
+        </div>
+    </div> 
+        
+        <div class="p-4 w-full">
+            <div>
+                <h2 class="text-2xl font-bold">Sección de Moderador</h2>
+            </div>
+            <form id="moderator-form" action="#" method="POST" class="mb-4">
+
+                <!-- tipo de contenido -->
+                <div class="mb-4">
+                    <span class="block text-sm font-medium text-gray-400">Tipo de Contenido</span>
+                    <div class="mt-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="content-type" value="pelicula" checked>
+                            <span class="ml-2">Película</span>
+                        </label>
+                        <label class="inline-flex items-center ml-6">
+                            <input type="radio" class="form-radio" name="content-type" value="serie">
+                            <span class="ml-2">Serie</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- titulos del contenido -->
+                <div class="mb-4">
+                    <label for="title" class="block text-sm font-medium text-gray-400">Título de la
+                        Película/Serie</label>
+                    <input type="text" id="title" name="title" placeholder="Ingrese el título" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <div class="mb-4">
+                    <label for="original-title" class="block text-sm font-medium text-gray-400">Título original</label>
+                    <input type="text" id="original-title" name="title" placeholder="Ingrese el título" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <!-- url de la imagen -->
+                <div class="mb-4">
+                    <label for="image-url" class="block text-sm font-medium text-gray-400">URL de la Imagen</label>
+                    <input type="url" id="image-url" name="image-url" placeholder="https://example.com/image.jpg"
+                        required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <!-- descripcion de la pelicula -->
+                <div class="mb-4">
+                    <label for="description" class="block text-sm font-medium text-gray-400">Descripción</label>
+                    <textarea id="description" name="description" placeholder="Ingrese la descripción" required rows="5"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label for="year" class="block text-sm font-medium text-gray-400">Año de Lanzamiento</label>
+                    <input type="number" id="year" name="year" placeholder="Ingrese el año" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <div class="mb-4">
+                    <label for="genre" class="block text-sm font-medium text-gray-400">Género</label>
+                    <input type="text" id="genre" name="genre" placeholder="Ingrese el género" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>                
+            
+
+            <div class="py-2">
+                <button type="button" id="fill-card"
+                    class="py-2 px-4 bg-blue-700 text-white font-semibold rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-48">Cargar</button>
+            </div>
+        </form>
+        </div>
+
+              
+    </div>
+    
+
+    <!-- Movie/Series List -->
+    <div class="bg-gray-800 p-6 rounded-lg">
+        <h2 class="text-2xl font-bold mb-4">Películas y Series</h2>
+        <div id="card-container">
+            <!-- Sample Movie Item -->
+            <div class="mb-4">
+                <div class="flex items-center mb-2">
+                    <img src="https://via.placeholder.com/100" alt="Poster" class="w-24 h-36 mr-4">
+                    <div>
+                        <h3 class="text-xl font-bold">Título de la Película/Serie</h3>
+                        <p class="text-gray-400">Género: Acción</p>
+                        <p class="text-gray-400">Descripción: Breve descripción de la película o serie.</p>
+                    </div>
+                </div>
+
+
+                <div class="flex items-center">
+                    <div class="mr-4">
+                        <label for="rating" class="block text-sm font-medium text-gray-400">Calificación</label>
+                        <select id="rating" name="rating"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="1">1 Estrella</option>
+                            <option value="2">2 Estrellas</option>
+                            <option value="3">3 Estrellas</option>
+                            <option value="4">4 Estrellas</option>
+                            <option value="5">5 Estrellas</option>
+                        </select>
+                    </div>
+                    <button type="button"
+                        class="py-2 px-4 bg-blue-700 text-white font-semibold rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Calificar</button>
+                </div>
+                <div class="mt-4">
+                    <label for="comment" class="block text-sm font-medium text-gray-400">Comentarios</label>
+                    <textarea id="comment" name="comment" placeholder="Escribe tu comentario" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm bg-gray-700 text-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                    <button type="button"
+                        class="mt-2 py-2 px-4 bg-blue-700 text-white font-semibold rounded-md shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Comentar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/createCard.js"></script>
+</body>
+
+</html>
