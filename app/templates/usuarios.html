@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-4">Lista de Usuarios</h1>
+        <table class="table-auto w-full bg-white shadow-md rounded-lg">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Nombre</th>
+                    <th class="px-4 py-2">Apellido</th>
+                    <th class="px-4 py-2">Username</th>
+                    <th class="px-4 py-2">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr class="border-b">
+                    <td class="px-4 py-2">{{ usuario.nombre }}</td>
+                    <td class="px-4 py-2">{{ usuario.apellido }}</td>
+                    <td class="px-4 py-2">{{ usuario.username }}</td>
+                    <td class="px-4 py-2">{{ usuario.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

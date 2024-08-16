@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - PopcornHour</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .rotate-on-hover {
+            transition: transform 0.5s ease;
+        }
+
+        .rotate-on-hover:hover {
+            transform: rotate(360deg);
+        }
+        .background {
+            background: ("{{ url_for("static", filename="img/bg-login") }}");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .mask {
+            background-color: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Asegura que la máscara esté detrás del contenido */
+        }
+
+        .register-area {
+            background-color: rgba(30, 30, 30, 0.8);
+            color: rgb(240, 240, 240);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 2; /* Asegura que el formulario esté por encima de la máscara */
+        }
+    </style>
+</head>
+<body class="background">
+   
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="register-area p-8 rounded-lg shadow-lg max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-6 text-center text-white">Registrarse</h2>
+            <form id="registerForm">
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium text-white">Nombre de usuario</label>
+                    <input type="text" id="username" class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-800" required>
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-white">Nombre</label>
+                    <input type="text" id="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-800" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-white">Correo electrónico</label>
+                    <input type="email" id="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-800" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-white">Contraseña</label>
+                    <input type="password" id="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-800" required>
+                </div>
+                <div class="mb-4">
+                    <label for="confirmPassword" class="block text-sm font-medium text-white">Confirmar Contraseña</label>
+                    <input type="password" id="confirmPassword" class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-800" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Registrarse</button>
+            </form>
+        </div>
+    </div>
+    <div id="message" class="hidden p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert"></div>
+    <script src="/app/static/js/register.js"></script>
+</body>
+</html>

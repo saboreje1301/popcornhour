@@ -15,7 +15,7 @@
             transform: rotate(360deg);
         }
         .background {
-            background-image: url('./img/bg-login.jpg');
+            background-image: url('./static/img/bg-login.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
@@ -46,7 +46,7 @@
         <div class="flex flex-col items-center mb-6">
             <div class="mb-2">
                 <a href="index.html">
-                <img src="./img/popcorn-logo.jpg" alt="Logo" class="h-32 rotate-on-hover rounded-lg">
+                <img src="./static/img/popcorn-logo.jpg" alt="Logo" class="h-32 rotate-on-hover rounded-lg">
                 </a>
             </div>
         </div>
@@ -54,11 +54,11 @@
         <form action="#" method="POST">
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-white">Correo Electrónico</label>
-                <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="email" id="email" name="email" placeholder="Ingrese su correo electrónico" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-800">
             </div>
             <div class="mb-6">
                 <label for="password" class="block text-sm font-medium text-white">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-800">
             </div>
             <div class="flex items-center justify-between">
                 <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -70,6 +70,6 @@
             </p>
         </form>
     </div>
-    
+    <script src="../static/js/auxiliar.js"></script>
 </body>
 </html>
