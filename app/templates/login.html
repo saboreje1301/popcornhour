@@ -14,8 +14,16 @@
         .rotate-on-hover:hover {
             transform: rotate(360deg);
         }
+
+        body {
+            background-image: url("{{ url_for('static', filename='img/bg-login.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
         .background {
-            background-image: url('./static/img/bg-login.jpg');
+            
             background-size: cover;
             background-position: center;
             position: relative;
@@ -66,7 +74,7 @@
                 </button>
             </div>
             <p class="mt-4 text-center text-sm text-gray-300">
-                ¿No tienes una cuenta? <a href="#" class="text-blue-600 hover:text-blue-500">Regístrate</a>
+                ¿No tienes una cuenta? <a href="/register" class="text-blue-600 hover:text-blue-500"><a href="/register" class="text-blue-600 hover:text-blue-500">Regístrate</a>
             </p>
         </form>
     </div>

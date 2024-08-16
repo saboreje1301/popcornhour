@@ -13,6 +13,14 @@
         .rotate-on-hover:hover {
             transform: rotate(360deg);
         }
+
+        body {
+            background-image: url("{{ url_for('static', filename='img/bg-login.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
         .background {
             background: ("{{ url_for("static", filename="img/bg-login") }}");
             background-size: cover;
@@ -40,7 +48,7 @@
     </style>
 </head>
 <body class="background">
-   
+   <div class="mask"></div>
     <div class="flex items-center justify-center min-h-screen">
         <div class="register-area p-8 rounded-lg shadow-lg max-w-md w-full">
             <h2 class="text-2xl font-bold mb-6 text-center text-white">Registrarse</h2>
@@ -66,10 +74,11 @@
                     <input type="password" id="confirmPassword" class="mt-1 block w-full p-2 border border-gray-300 rounded-md text-gray-800" required>
                 </div>
                 <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Registrarse</button>
+                <div id="message" class="hidden mt-4 text-center text-white"></div>
             </form>
         </div>
     </div>
     <div id="message" class="hidden p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert"></div>
-    <script src="/app/static/js/register.js"></script>
+    <script src="/static/js/register.js"></script>
 </body>
 </html>

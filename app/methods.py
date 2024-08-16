@@ -3,7 +3,6 @@ from .Models.usuarios import User
 from flask_jwt_extended import create_access_token
 from datetime import timedelta
 from flask import request, jsonify, render_template
-import logging
 from .Models.contenido import Contenido
 
 # Configurar el logger
@@ -31,7 +30,7 @@ def user_register(username, name, email, password):
         nuevo_usuario = User(username=username, email=email, name=name)
         nuevo_usuario.set_password(password=password)
         nuevo_usuario.save()
-        return render_template('register.html')
+        return {'message': 'Usuario registrado exitosamente'}, 200
     except Exception as e:
         return {'Error': f'Error del servidor: {str(e)}'}, 500
     
