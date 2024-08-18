@@ -32,3 +32,5 @@ contentTypeInputs.forEach(function (input) {
         cardContentType.textContent = 'Tipo de Contenido: ' + (input.value.charAt(0).toUpperCase() + input.value.slice(1));
     });
 });
+
+

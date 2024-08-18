@@ -1,4 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
 from app.extensions import db
 
 
@@ -13,7 +12,7 @@ class Contenido(db.Model):
     anio = db.Column(db.Integer)
     duracion = db.Column(db.Integer)
     sinopsis = db.Column(db.Text)
-    url = db.Column(db.Text)  
+    urlimage = db.Column(db.Text)  
     
     def save_contenido(self):
         
@@ -41,13 +40,21 @@ class Contenido(db.Model):
             'anio': self.anio,
             'duracion': self.duracion,
             'sinopsis': self.sinopsis,
-            'url': self.url
+            'urlimage': self.urlimage
         }
     
     def card(self):
-        return {
-            'url_image': self.url,
+        card_info = {
+            'id': self.id,
+            'tipo': self.tipo,
+            'urlimage': self.urlimage,
             'titulo_original': self.titulo_original,
             'titulo_espanol': self.titulo_espanol,
-        }
-        
+            'anio': self.anio
+    }
+        print(f"Cargando tarjeta: {card_info}")  # Mensaje en consola
+        return card_info
+    
+
+
+            

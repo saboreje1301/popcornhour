@@ -28,6 +28,8 @@ class User(db.Model):
         """Guarda el usuario en la base de datos."""
         db.session.add(self)
         db.session.commit()
+        print('Usuario guardado')
+        
 
     def delete(self):
         """Elimina el usuario de la base de datos."""

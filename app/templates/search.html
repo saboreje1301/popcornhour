@@ -74,24 +74,26 @@
         </div>
 
         <div class="w-3/4 flex items-center">
-            <form class="container flex w-full mx-auto" action="/search" method="get">    
-                <div>
-                    <label for="search_area" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                </div>
+        <form class="container flex w-full mx-auto">    
+            <div>
+                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            </div>
                 <div class="relative flex items-center px-2 h-3 justify-end w-full">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                        </svg>
-                    </div>
-                    <input type="search" id="search_area" name="query" class="w-full p-1 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                    placeholder="Busca por titulo original o español..." required />
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
                 </div>
+                
+                <input type="search" id="default-search" class="w-full p-1 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                placeholder="Search Mockups, Logos..." required />
+                </div>
+            </div>
                 <div class="flex items-center px-2 justify-end">    
-                    <button type="submit" class="text-white end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                <button type="submit" class="text-white end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
-            </form>
-        </div>
+        </form>
+    </div>
 
         <div id="login-area" class="flex justify-end p-2">
             {% if logged_in %}
@@ -141,126 +143,30 @@
     </nav>
 
 
-   
-<div>
-    <div class="relative bg-gray-100">
-        <!-- Carrusel -->
-        <!-- Repite el bloque anterior para más elementos del carrusel -->
-        <div class="relative text-gray-900 p-1 mx-4 text-2xl font-semibold">
-            <h2 class=font-medium">Recomendaciones</h2>
-        </div>
-        <div
-            class="flex space-x-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 py-3 shadow-gray-500 bg-gray-200">
-            {% for card in random_cards %}
-            <div class="hidden"><p>
-                {{ card.id }}
-            </p></div>
-            <a href="/content/{{ card.id }}">
+    <div class="container mx-auto py-8">
+        <h1 class="text-4xl font-bold text-center mb-8">Busqueda</h1>
+
+        <!-- Contenido específico de esta página -->
+        <div class="flex space-x-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 py-3 shadow-gray-500 bg-gray-200">
+            {% for card in results %}
             <div class="relative flex flex-col rounded-xl bg-red-800 text-gray-700 snap-center custom-width">
                 <div class="relative h-80 overflow-hidden rounded-xl text-gray-700">
                     <img src="{{ card.urlimage }}" alt="profile-picture" />
                 </div>
                 <div class="p-6 text-center">
-                    <h5
-                        class="mb-2 block bg-transparent font-sans font-bold leading-snug tracking-normal text-white antialiased">
+                    <h5 class="mb-2 block bg-transparent font-sans font-bold leading-snug tracking-normal text-white antialiased">
                         {{ card.titulo_espanol }}
                     </h5>
-                    <p
-                        class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
+                    <p class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
                         {{ card.titulo_original }}
                     </p>
-                    <p
-                        class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
+                    <p class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
                         {{ card.anio }}
                     </p>
                 </div>
             </div>
-        </a>
             {% endfor %}
         </div>
-    </div>
-
-
-    <div class="relative bg-gray-100">
-        <!-- Carrusel -->
-        <!-- Repite el bloque anterior para más elementos del carrusel -->
-        <div class="relative text-gray-900 p-1 mx-4 text-2xl font-semibold">
-            <h2 class=font-medium">Peliculas</h2>
-        </div>
-        <div
-            class="flex space-x-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 py-3 shadow-gray-500 bg-gray-200">
-            {% for card in cards %}
-            {% if card.tipo == "pelicula" %}
-            <div class="hidden"><p>
-                {{ card.id }}
-            </p></div>
-            <a href="/content/{{ card.id }}">
-            <div class="relative flex flex-col rounded-xl bg-red-800 text-gray-700 snap-center custom-width">
-                <div class="relative h-80 overflow-hidden rounded-xl text-gray-700">
-                    <img src="{{ card.urlimage }}" alt="profile-picture" />
-                </div>
-                <div class="p-6 text-center">
-                    <h5
-                        class="mb-2 block bg-transparent font-sans font-bold leading-snug tracking-normal text-white antialiased">
-                        {{ card.titulo_espanol }}
-                    </h5>
-                    <p
-                        class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
-                        {{ card.titulo_original }}
-                    </p>
-                    <p
-                        class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
-                        {{ card.anio }}
-                    </p>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </a>
-        </div>
-    </div>
-
-    
-    <div class="relative bg-gray-100">
-        <!-- Carrusel -->
-        <!-- Repite el bloque anterior para más elementos del carrusel -->
-        <div class="relative text-gray-900 p-1 mx-4 text-2xl font-semibold">
-            <h2 class=font-medium">Series</h2>
-        </div>
-        <div
-            class="flex space-x-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-2 py-3 shadow-gray-500 bg-gray-200">
-            {% for card in cards %}
-            {% if card.tipo == "serie" %}
-            <div class="hidden"><p>
-                {{ card.id }}
-            </p></div>
-            <a href="/content/{{ card.id }}">
-            <div class="relative flex flex-col rounded-xl bg-red-800 text-gray-700 snap-center custom-width">
-                <div class="relative h-80 overflow-hidden rounded-xl text-gray-700">
-                    <img src="{{ card.urlimage }}" alt="profile-picture" />
-                </div>
-                <div class="p-6 text-center">
-                    <h5
-                        class="mb-2 block bg-transparent font-sans font-bold leading-snug tracking-normal text-white antialiased">
-                        {{ card.titulo_espanol }}
-                    </h5>
-                    <p
-                        class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
-                        {{ card.titulo_original }}
-                    </p>
-                    <p
-                        class="mb-2 block bg-transparent font-sans font-semibold leading-snug tracking-normal text-white antialiased">
-                        {{ card.anio }}
-                    </p>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </a>
-        </div>
-    </div>
-</div>
-
 
 
         <footer class="bg-gray-800 text-gray-400 py-8 mt-8">
@@ -371,11 +277,6 @@
     </div>
     </footer>
 
-
-    <!-- Scripts para los iconos de las redes sociales -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-    <script src="../static/js/auxiliar.js"></script>
-
-</body>
-
-</html>
+    
+        
+    </body>

@@ -35,7 +35,7 @@ def user_register(username, name, email, password):
         return {'Error': f'Error del servidor: {str(e)}'}, 500
     
 
-def register_contenido(tipo, titulo_original, titulo_espanol, director, genero, anio, duracion, sinopsis, url):
+def register_contenido(tipo, titulo_original, titulo_espanol, director, genero, anio, duracion, sinopsis, urlimage):
     try:
         nuevo_contenido = Contenido(
             tipo=tipo,
@@ -46,7 +46,7 @@ def register_contenido(tipo, titulo_original, titulo_espanol, director, genero, 
             anio=anio,
             duracion=duracion,
             sinopsis=sinopsis,
-            url=url
+            urlimage=urlimage
     )
         nuevo_contenido.save_contenido()
         return {"message": "Contenido registrado exitosamente", "status": "success"}, 200
@@ -54,12 +54,15 @@ def register_contenido(tipo, titulo_original, titulo_espanol, director, genero, 
         return {"error": str(e), "status": "error"}, 500
     
 
-def fill_cards(titulo_original, titulo_espanol, url):
+def fill_cards(id, tipo, titulo_original, titulo_espanol, urlimage, anio):
     try:
         card_main = Contenido(
+            id=id,
+            tipo=tipo,
             titulo_original=titulo_original,
             titulo_espanol=titulo_espanol,
-            url=url,
+            urlimage=urlimage,
+            anio=anio
             
         )
         db.session.add(card_main)  # Agregar la instancia a la sesión
@@ -68,4 +71,15 @@ def fill_cards(titulo_original, titulo_espanol, url):
     except Exception as e:
         db.session.rollback()  # Revertir la transacción en caso de error
         return {"error": str(e), "status": "error"}, 500
+    
 
+def search():
+    try:
+        contenido = Contenido.query.all()
+        return jsonify([c.to_dict() for c in contenido]), 200
+    except Exception as e:
+        return {"error": str(e), "status": "error"}, 500
+    
+
+
+    

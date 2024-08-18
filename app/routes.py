@@ -5,10 +5,15 @@ from .Models.usuarios import User
 from .methods import *
 from .extensions import db
 from .Models.contenido import Contenido
+import random
 
 app = Blueprint('main', __name__)
 api = Api(app)
 
+
+@app.route('/index.html')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def home():
@@ -27,10 +32,27 @@ def logout():
 class Home(Resource):
     def get(self):
         cards = Contenido.query.all()
+        random_cards = random.sample(cards, min(len(cards), 10))
         cards_data = [card.card() for card in cards]  # Convertir las instancias a diccionarios
-        # Renderiza la plantilla y crea una respuesta HTML con los datos de las tarjetas
-        html_content = render_template('index.html', cards=cards_data)
-        return make_response(html_content)
+        html_content = render_template('index.html', cards=cards_data, random_cards=random_cards)   
+        return make_response(html_content)        
+    
+class Search(Resource):
+    def get(self):
+        query = request.args.get('query', '')  # Obtener el valor del input de búsqueda
+        if query:
+            results = Contenido.query.filter(
+                Contenido.titulo_espanol.ilike(f'%{query}%') |
+                Contenido.titulo_original.ilike(f'%{query}%')
+            ).all()
+            if results:
+                html_busqueda = render_template('search.html', results=results, query=query)
+            else:
+                html_busqueda = render_template('search.html', query=query, no_results=True)
+            return make_response(html_busqueda, 200)
+        return make_response(render_template('search.html'))
+
+    
 
 class Login(Resource):
     def get(self):
@@ -139,6 +161,33 @@ class Moderador(Resource):
         except Exception as e:
             html_content = render_template('moderador.html', error=str(e))
             return make_response(html_content, 500)
+        
+
+class Contenido_site(Resource):
+    def get(self, id):
+        try:
+            card = Contenido.query.get(id)
+            if card is None:
+                raise Exception("Card not found")
+
+            card_content = {
+                'id': card.id,
+                'tipo': card.tipo,
+                'titulo_original': card.titulo_original,
+                'titulo_espanol': card.titulo_espanol,
+                'director': card.director,
+                'genero': card.genero,
+                'anio': card.anio,
+                'duracion': card.duracion,
+                'sinopsis': card.sinopsis,
+                'urlimage': card.urlimage
+            }
+            html_content = render_template('content.html', card_content=card_content)
+            return make_response(html_content, 200)
+        except Exception as e:
+            html_content = render_template('moderador.html', error=str(e))
+            return make_response(html_content, 500)
+
 
 class APIRoutes:
     def init_routes(self, api):
@@ -146,4 +195,6 @@ class APIRoutes:
         api.add_resource(Login, '/login')
         api.add_resource(RegisterUser, '/register')
         api.add_resource(Moderador, '/moderador')
+        api.add_resource(Contenido_site, '/content/<int:id>')
+        api.add_resource(Search, '/search')
 
