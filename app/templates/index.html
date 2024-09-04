@@ -97,9 +97,10 @@
             {% if logged_in %}
             <!-- Menú para usuarios logueados -->
             <ul class="flex space-x-4">
-                <li><a href="/profile">Perfil</a></li>
-                <li><a href="/settings">Configuración</a></li>
-                <li><a href="/logout">Cerrar sesión</a></li>
+                <li><a href="/profile" class="text-gray-300 hover:text-white hover:bg-red-800 font-bold">Perfil</a></li>
+                <li><a href="/settings" class="text-gray-300 hover:text-white hover:bg-red-800 font-bold">Configuración</a></li>
+                <li><a href="/moderador" class="text-gray-300 hover:text-white hover:bg-red-800 font-bold">Agregar Contenido</a></li>
+                <li><a href="/logout" class="text-gray-300 hover:text-white hover:bg-red-800 font-bold">Cerrar sesión</a></li>
             </ul>
             {% else %}
             <!-- Menú para usuarios no logueados -->

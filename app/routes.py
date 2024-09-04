@@ -60,7 +60,6 @@ class Login(Resource):
         html_content = render_template('login.html')
         return make_response(html_content)
         
-
     def post(self):
         data = request.form
         email = data.get('email')
@@ -69,10 +68,11 @@ class Login(Resource):
         respuesta, status = inicio_sesion(email, password)
 
         if status == 200:
+            session['logged_in'] = True  # Establecer la variable logged_in en la sesión
             cards = Contenido.query.all()
             cards_data = [card.card() for card in cards]  # Convertir las instancias a diccionarios
             # Renderiza la plantilla y crea una respuesta HTML con los datos de las tarjetas
-            html_content = render_template('index.html', cards=cards_data)
+            html_content = render_template('index.html', cards=cards_data, logged_in=True)
             return make_response(html_content)
         else:
             return respuesta, status
